@@ -1,0 +1,48 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.2.0'
+	}
+}
+apply plugin: 'android'
+
+android {
+	compileSdkVersion 'android-24'
+	buildToolsVersion '24.0.2'
+
+	defaultConfig {
+		minSdkVersion 15
+		targetSdkVersion 24
+
+		versionCode 100
+		versionName "1.0.0"
+	}
+
+	signingConfigs {
+		release {
+			storeFile file("../iansoft.keystore")
+			keyAlias "ianyuen"
+			keyPassword "123456"
+			storePassword "123456"
+		}
+	}
+
+	buildTypes {
+		debug {
+			debuggable true
+			signingConfig signingConfigs.release
+		}
+
+		release {
+			minifyEnabled true
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+			signingConfig signingConfigs.release
+		}
+	}
+
+	tasks.withType(JavaCompile) {
+		options.compilerArgs << "-Xlint:deprecation"
+	}
+}
