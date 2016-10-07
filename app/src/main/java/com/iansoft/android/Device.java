@@ -16,7 +16,7 @@ public class Device {
 		return m_sInstance;
 	}
 
-	private void setMobileDataEnabled(Context context, boolean enabled) {
+	public void setMobileDataEnabled(Context context, boolean enabled) {
 		try {
 			final ConnectivityManager conman = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 			final Class conmanClass = Class.forName(conman.getClass().getName());
