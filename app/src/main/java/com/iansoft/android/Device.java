@@ -1,19 +1,38 @@
 package com.iansoft.android;
 
+import com.iansoft.android.Log;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import android.app.Activity;
 import android.net.ConnectivityManager;
 import android.content.Context;
 
 public class Device {
 	private static Device m_sInstance = null;
 
+	private Activity activity = null;
+
+	public Device() {
+		if (m_sInstance == null) {
+			m_sInstance = this;
+		}
+	}
+
 	public static Device GetInstance() {
 		if (m_sInstance == null) {
 			m_sInstance = new Device();
 		}
 		return m_sInstance;
+	}
+
+	public void SetMainActivity(Activity activity) {
+		this.activity = activity;
+	}
+
+	public Activity GetMainActivity() {
+		return activity;
 	}
 
 	public void setMobileDataEnabled(Context context, boolean enabled) {
@@ -28,6 +47,8 @@ public class Device {
 			setMobileDataEnabledMethod.setAccessible(true);
 
 			setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			Log.print(e.toString());
+		}
 	}
 }

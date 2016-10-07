@@ -1,6 +1,5 @@
 package com.iansoft.android.AdsSupport;
 
-import com.iansoft.android.Log;
 import com.iansoft.android.Device;
 
 import android.content.Intent;
@@ -9,15 +8,13 @@ import android.content.BroadcastReceiver;
 
 public class AlarmReceiver extends BroadcastReceiver {
 	Device device = new Device();
-	Context context = null;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		context = this.context;
 		TurnOffData();
-		Delay(100);
+		Delay(10);
 		TurnOnData();
-		Delay(100);
+		Delay(20);
 	}
 
 	private void Delay(int delayTime) {
@@ -28,12 +25,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 		}
 	}
 	private void TurnOnData() {
-		Log.print("");
-		device.GetInstance().setMobileDataEnabled(context, true);
+		device.GetInstance().setMobileDataEnabled(device.GetInstance().GetMainActivity(), true);
 	}
 
 	private void TurnOffData() {
-		Log.print("");
-		device.GetInstance().setMobileDataEnabled(context, false);
+		device.GetInstance().setMobileDataEnabled(device.GetInstance().GetMainActivity(), false);
 	}
 }
