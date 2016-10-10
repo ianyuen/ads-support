@@ -51,11 +51,9 @@ public class Device {
 			setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
 			*/
 
-			TelephonyManager telephonyService = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-			Method setMobileDataEnabledMethod = telephonyService.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
-			if (null != setMobileDataEnabledMethod) {
-				setMobileDataEnabledMethod.invoke(telephonyService, enabled);
-			}
+			TelephonyManager telephonyManager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+			Method setMobileDataEnabledMethod = telephonyManager.getClass().getDeclaredMethod("setDataEnabled", boolean.class);
+			setMobileDataEnabledMethod.invoke(telephonyManager, enabled);
 		} catch (Exception e) {
 			Log.print(e.toString());
 		}

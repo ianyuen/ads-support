@@ -3,7 +3,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.iansoft.android.AdsSupport"
 >
-	<!-- <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" /> -->
+	<uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
 	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
