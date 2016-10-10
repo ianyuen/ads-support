@@ -10,6 +10,7 @@ import android.content.Context;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.view.View;
 
 public class Splash extends Activity {
 	private static Splash m_sInstance = null;
@@ -22,6 +23,15 @@ public class Splash extends Activity {
 		setContentView(R.layout.main);
 
 		device.GetInstance().SetMainActivity(this);
+	}
+
+	public void btnStopClicked(View view) {
+		Log.print("");
+		StopSupport();
+	}
+
+	public void btnStartClicked(View view) {
+		Log.print("");
 		StartSupport(10);
 	}
 

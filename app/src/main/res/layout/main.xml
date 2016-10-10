@@ -5,9 +5,17 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 >
-	<TextView
-		android:layout_width="fill_parent"
+	<Button
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="Hello World, Splash"
+		android:text="start support"
+		android:onClick="btnStartClicked"
+	/>
+
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="stop support"
+		android:onClick="btnStopClicked"
 	/>
 </LinearLayout>
