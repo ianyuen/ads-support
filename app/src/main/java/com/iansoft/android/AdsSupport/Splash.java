@@ -15,23 +15,23 @@ import android.view.View;
 public class Splash extends Activity {
 	private static Splash m_sInstance = null;
 
-	Device device = new Device();
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		device.GetInstance().SetMainActivity(this);
+		Support.GetInstance().SetMainActivity(this);
 	}
 
 	public void btnStopClicked(View view) {
 		Log.print("");
+		Support.GetInstance().SetMainView(view);
 		StopSupport();
 	}
 
 	public void btnStartClicked(View view) {
 		Log.print("");
+		Support.GetInstance().SetMainView(view);
 		StartSupport(10);
 	}
 

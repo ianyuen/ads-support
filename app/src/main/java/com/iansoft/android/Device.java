@@ -14,8 +14,6 @@ import android.telephony.TelephonyManager;
 public class Device {
 	private static Device m_sInstance = null;
 
-	private Activity activity = null;
-
 	public Device() {
 		if (m_sInstance == null) {
 			m_sInstance = this;
@@ -27,14 +25,6 @@ public class Device {
 			m_sInstance = new Device();
 		}
 		return m_sInstance;
-	}
-
-	public void SetMainActivity(Activity activity) {
-		this.activity = activity;
-	}
-
-	public Activity GetMainActivity() {
-		return activity;
 	}
 
 	public void setMobileDataEnabled(Context context, boolean enabled) {
