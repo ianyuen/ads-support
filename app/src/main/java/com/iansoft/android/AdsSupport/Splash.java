@@ -1,7 +1,6 @@
 package com.iansoft.android.AdsSupport;
 
 import com.iansoft.android.Log;
-import com.iansoft.android.Device;
 
 import android.os.Bundle;
 import android.content.Intent;
@@ -19,19 +18,15 @@ public class Splash extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
-		Support.GetInstance().SetMainActivity(this);
 	}
 
 	public void btnStopClicked(View view) {
 		Log.print("");
-		Support.GetInstance().SetMainView(view);
 		StopSupport();
 	}
 
 	public void btnStartClicked(View view) {
 		Log.print("");
-		Support.GetInstance().SetMainView(view);
 		StartSupport(10);
 	}
 

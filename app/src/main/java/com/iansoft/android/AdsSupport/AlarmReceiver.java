@@ -10,15 +10,19 @@ public class AlarmReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.print("");
-		//Support.GetInstance().TurnOffData();
+		Support.GetInstance().TurnOffData();
 		Support.GetInstance().Delay(10);
-		//Support.GetInstance().TurnOnData();
+
+		Support.GetInstance().TurnOnData();
 		Support.GetInstance().Delay(20);
-		Support.GetInstance().StartApplication(context, "com.iansoft.android.ExchangeRates", "com.iansoft.android.ExchangeRates.Splash");
+
+		Support.GetInstance().StartApplication("com.iansoft.android.ExchangeRates");
 		Support.GetInstance().Delay(20);
+
 		Support.GetInstance().ClickAds();
 		Support.GetInstance().Delay(20);
-		Support.GetInstance().StopApplication(context, "com.iansoft.android.ExchangeRates");
+
+		Support.GetInstance().StopApplication("com.iansoft.android.ExchangeRates");
 
 	}
 }

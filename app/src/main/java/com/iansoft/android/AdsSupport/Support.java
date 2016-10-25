@@ -1,7 +1,8 @@
 package com.iansoft.android.AdsSupport;
 
 import com.iansoft.android.Log;
-import com.iansoft.android.Device;
+
+import java.io.DataOutputStream;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -15,9 +16,6 @@ import android.view.View;
 
 public class Support {
 	private static Support m_sInstance = null;
-
-	private View view = null;
-	private Activity activity = null;
 
 	public Support() {
 		if (m_sInstance == null) {
@@ -41,54 +39,50 @@ public class Support {
 		}
 	}
 
-	public void SetMainView(View view) {
-		this.view = view;
-	}
-
-	public View GetMainView() {
-		return view;
-	}
-
-	public void SetMainActivity(Activity activity) {
-		this.activity = activity;
-	}
-
-	public Activity GetMainActivity() {
-		return activity;
-	}
-
 	public void TurnOnData() {
-		Log.print("");
-		Device.GetInstance().setMobileDataEnabled(GetMainActivity(), true);
+		Log.print();
+		ExecuteShell("svc data enable");
 	}
 
 	public void TurnOffData() {
-		Log.print("");
-		Device.GetInstance().setMobileDataEnabled(GetMainActivity(), false);
+		Log.print();
+		ExecuteShell("svc data disable");
 	}
 
 	public void ClickAds() {
-		Log.print("");
-		long downTime = SystemClock.uptimeMillis();
-		long eventTime = SystemClock.uptimeMillis() + 100;
-		float x = 400.0f;
-		float y = 730.0f;
-		int metaState = 0;
-		MotionEvent motionEvent = MotionEvent.obtain(downTime, eventTime, MotionEvent.ACTION_UP, x, y, metaState);
-		Support.GetInstance().GetMainView().dispatchTouchEvent(motionEvent);
+		Log.print();
+		ExecuteShell("input tap 90 230");
 	}
 
-	public void StopApplication(Context context, String packageName) {
-		Log.print("");
-		ActivityManager activityManager = (ActivityManager)context.getSystemService(Activity.ACTIVITY_SERVICE);
-		activityManager.killBackgroundProcesses(packageName);
+	public void StopApplication(String packageName) {
+		Log.print();
+		ExecuteShell("am force-stop " + packageName);
 	}
 
-	public void StartApplication(Context context, String packageName, String className) {
-		Log.print("");
-		Intent intent = new Intent();
-		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		intent.setComponent(new ComponentName(packageName, className));
-		context.startActivity(intent);
+	public void StartApplication(String packageName) {
+		Log.print();
+		ExecuteShell("monkey -p " + packageName + " -c android.intent.category.LAUNCHER 1");
+	}
+
+	private void ExecuteShell(String command) {
+		Log.print("command: " + command);
+		Process process = null;
+		try {
+    		process = Runtime.getRuntime().exec("su");
+			DataOutputStream outputStream = new DataOutputStream(process.getOutputStream());
+
+			command = command + "\n";
+			outputStream.write((command).getBytes());
+			outputStream.flush();
+    		outputStream.write("exit\n".getBytes());
+			outputStream.flush();
+    		process.waitFor(); 
+		} catch (Exception e) {
+    		Log.print(e.toString());
+		} finally { 
+    		if (process != null) { 
+        		process.destroy(); 
+    		} 
+		}
 	}
 }

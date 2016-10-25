@@ -42,6 +42,10 @@ android {
 		}
 	}
 
+	dexOptions{
+		javaMaxHeapSize "2048M"
+	}
+
 	tasks.withType(JavaCompile) {
 		options.compilerArgs << "-Xlint:deprecation"
 	}
