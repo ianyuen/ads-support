@@ -11,7 +11,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Log.print();
 
-		int currentSecond = System.currentTimeMillis() / 1000 / 60;
+		int currentSecond = 0;//System.currentTimeMillis() % 1000;
 		Support.GetInstance().TurnOffData();
 		Support.GetInstance().Delay(10 + currentSecond);
 

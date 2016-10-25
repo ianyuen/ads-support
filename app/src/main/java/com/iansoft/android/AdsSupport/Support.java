@@ -41,7 +41,7 @@ public class Support {
 
 	public void ClickAds() {
 		Log.print();
-		ExecuteShell("input tap 90 230");
+		ExecuteShell("input tap 370 700");
 	}
 
 	public void TurnOnData() {
