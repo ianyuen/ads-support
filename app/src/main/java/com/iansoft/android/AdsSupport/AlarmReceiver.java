@@ -9,7 +9,8 @@ import android.content.BroadcastReceiver;
 public class AlarmReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Log.print("");
+		Log.print();
+
 		Support.GetInstance().TurnOffData();
 		Support.GetInstance().Delay(10);
 
@@ -20,9 +21,11 @@ public class AlarmReceiver extends BroadcastReceiver {
 		Support.GetInstance().Delay(20);
 
 		Support.GetInstance().ClickAds();
-		Support.GetInstance().Delay(20);
+		Support.GetInstance().Delay(30);
+
+		Support.GetInstance().PressHomeKey();
+		Support.GetInstance().Delay(60);
 
 		Support.GetInstance().StopApplication("com.iansoft.android.ExchangeRates");
-
 	}
 }

@@ -21,17 +21,17 @@ public class Splash extends Activity {
 	}
 
 	public void btnStopClicked(View view) {
-		Log.print("");
+		Log.print();
 		StopSupport();
 	}
 
 	public void btnStartClicked(View view) {
-		Log.print("");
+		Log.print();
 		StartSupport(10);
 	}
 
 	private void StopSupport() {
-		Log.print("");
+		Log.print();
 		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(this, AlarmReceiver.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
@@ -39,7 +39,7 @@ public class Splash extends Activity {
 	}
 
 	private void StartSupport(int delaySecond) {
-		Log.print("");
+		Log.print();
 		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(this, AlarmReceiver.class);
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);

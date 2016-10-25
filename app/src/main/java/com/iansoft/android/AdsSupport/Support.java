@@ -32,11 +32,16 @@ public class Support {
 
 	public void Delay(int delayTime) {
 		Log.print("delayTime: " + delayTime);
-		long lastEpoch = System.currentTimeMillis() / 1000;
-		long currentEpoch = System.currentTimeMillis() / 1000;
-		while (currentEpoch - lastEpoch < delayTime) {
-			currentEpoch = System.currentTimeMillis() / 1000;
+		try {
+			Thread.sleep(delayTime);
+		} catch (Exception e) {
+			Log.print(e.toString());
 		}
+	}
+
+	public void ClickAds() {
+		Log.print();
+		ExecuteShell("input tap 90 230");
 	}
 
 	public void TurnOnData() {
@@ -49,9 +54,9 @@ public class Support {
 		ExecuteShell("svc data disable");
 	}
 
-	public void ClickAds() {
+	public void PressHomeKey() {
 		Log.print();
-		ExecuteShell("input tap 90 230");
+		ExecuteShell("input keyevent 3");
 	}
 
 	public void StopApplication(String packageName) {
