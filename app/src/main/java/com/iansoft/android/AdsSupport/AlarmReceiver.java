@@ -11,20 +11,21 @@ public class AlarmReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Log.print();
 
+		int currentSecond = System.currentTimeMillis() / 1000 / 60;
 		Support.GetInstance().TurnOffData();
-		Support.GetInstance().Delay(10);
+		Support.GetInstance().Delay(10 + currentSecond);
 
 		Support.GetInstance().TurnOnData();
-		Support.GetInstance().Delay(20);
+		Support.GetInstance().Delay(20 + currentSecond);
 
 		Support.GetInstance().StartApplication("com.iansoft.android.ExchangeRates");
-		Support.GetInstance().Delay(20);
+		Support.GetInstance().Delay(20 + currentSecond);
 
 		Support.GetInstance().ClickAds();
-		Support.GetInstance().Delay(30);
+		Support.GetInstance().Delay(30 + currentSecond);
 
 		Support.GetInstance().PressHomeKey();
-		Support.GetInstance().Delay(60);
+		Support.GetInstance().Delay(60 + currentSecond);
 
 		Support.GetInstance().StopApplication("com.iansoft.android.ExchangeRates");
 	}
