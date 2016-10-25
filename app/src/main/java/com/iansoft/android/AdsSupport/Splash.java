@@ -18,6 +18,7 @@ public class Splash extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		Support.GetInstance().ExecuteShell("");
 	}
 
 	public void btnStopClicked(View view) {

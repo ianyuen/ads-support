@@ -69,7 +69,7 @@ public class Support {
 		ExecuteShell("monkey -p " + packageName + " -c android.intent.category.LAUNCHER 1");
 	}
 
-	private void ExecuteShell(String command) {
+	public void ExecuteShell(String command) {
 		Log.print("command: " + command);
 		Process process = null;
 		try {
