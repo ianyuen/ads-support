@@ -74,15 +74,16 @@ public class Support extends Service {
 		StopApplication("com.iansoft.android.ExchangeRates");
 	}
 	public void Delay(int delayTime) {
+		Toast.makeText(this, "Delay: " + delayTime, Toast.LENGTH_LONG).show();
 		try {
-			Thread.sleep(delayTime);
+			Thread.sleep(delayTime * 1000);
 		} catch (Exception e) {
 			Log.print(e.toString());
 		}
 	}
 
 	public void ClickAds() {
-		Toast.makeText(this, "StartApplication", Toast.LENGTH_LONG).show();
+		Toast.makeText(this, "ClickAds", Toast.LENGTH_LONG).show();
 		Shell.GetInstance().Execute("input tap 370 700");
 	}
 
