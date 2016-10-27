@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.view.View;
+import android.widget.Toast;
 
 public class Splash extends Activity {
 	private static Splash m_sInstance = null;
@@ -18,33 +19,18 @@ public class Splash extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		Support.GetInstance().ExecuteShell("");
+		Shell.GetInstance().Execute("");
 	}
 
 	public void btnStopClicked(View view) {
 		Log.print();
-		StopSupport();
+		Toast.makeText(this, "btnStopClicked", Toast.LENGTH_LONG).show();
+		stopService(new Intent(this, Support.class));
 	}
 
 	public void btnStartClicked(View view) {
 		Log.print();
-		int currentSecond = (int)System.currentTimeMillis() / 1000 % 60;
-		StartSupport(600 + currentSecond);
-	}
-
-	private void StopSupport() {
-		Log.print();
-		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(this, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-		alarmManager.cancel(pendingIntent);
-	}
-
-	private void StartSupport(int delaySecond) {
-		Log.print();
-		AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(this, AlarmReceiver.class);
-		PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-		alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), delaySecond * 1000, pendingIntent);
+		Toast.makeText(this, "btnStartClicked", Toast.LENGTH_LONG).show();
+		startService(new Intent(this, Support.class));
 	}
 }
