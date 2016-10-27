@@ -28,9 +28,8 @@ public class Splash extends Activity {
 
 	public void btnStartClicked(View view) {
 		Log.print();
-		//int currentSecond = System.currentTimeMillis() / 1000 % 60;
-		Log.print("currentTimeMillis: " + System.currentTimeMillis());
-		//StartSupport(600 + currentSecond);
+		int currentSecond = (int)System.currentTimeMillis() / 1000 % 60;
+		StartSupport(600 + currentSecond);
 	}
 
 	private void StopSupport() {
