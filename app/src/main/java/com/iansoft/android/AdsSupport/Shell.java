@@ -27,9 +27,9 @@ public class Shell {
 			command = command + "\n";
 			outputStream.write((command).getBytes());
 			outputStream.flush();
-    		outputStream.write("exit\n".getBytes());
-			outputStream.flush();
-    		process.waitFor(); 
+			outputStream.write("exit\n".getBytes());
+			outputStream.flush(); 
+			process.waitFor(); 
 		} catch (Exception e) {
     		Log.print(e.toString());
 		} finally { 
