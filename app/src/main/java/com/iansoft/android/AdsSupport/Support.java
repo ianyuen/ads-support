@@ -38,14 +38,15 @@ public class Support extends Service {
 	}
 
 	@Override
-	public void onCreate() {
-		Toast.makeText(this, "service created", Toast.LENGTH_LONG).show();
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		Toast.makeText(this, "onStartCommand", Toast.LENGTH_LONG).show();
+		StartSupport();
+		return START_NOT_STICKY;
 	}
 
 	@Override
-	public void onStart(Intent intent, int startId) {
-		Toast.makeText(this, "service started", Toast.LENGTH_LONG).show();
-		StartSupport();
+	public void onCreate() {
+		Toast.makeText(this, "service created", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -55,7 +56,7 @@ public class Support extends Service {
 
 	private void StartSupport() {
 		int currentSecond = (int)System.currentTimeMillis() / 1000 % 60;
-
+/*
 		TurnOffData();
 		Delay(10 + currentSecond);
 
@@ -64,14 +65,15 @@ public class Support extends Service {
 
 		StartApplication("com.iansoft.android.ExchangeRates");
 		Delay(20 + currentSecond);
-
-		//ClickAds();
+*/
+		ClickAds("80", "220");
 		//Delay(30 + currentSecond);
-
+/*
 		PressHomeKey();
 		Delay(60 + currentSecond);
 
 		StopApplication("com.iansoft.android.ExchangeRates");
+*/
 	}
 	public void Delay(int delayTime) {
 		Toast.makeText(this, "Delay: " + delayTime, Toast.LENGTH_LONG).show();
@@ -82,9 +84,11 @@ public class Support extends Service {
 		}
 	}
 
-	public void ClickAds() {
-		Toast.makeText(this, "ClickAds", Toast.LENGTH_LONG).show();
-		Shell.GetInstance().Execute("input tap 370 700");
+	public void ClickAds(String x, String y) {
+		String command = "input tap " + x + " " + y;
+		Log.print(command);
+		Toast.makeText(this, command, Toast.LENGTH_LONG).show();
+		Shell.GetInstance().Execute(command);
 	}
 
 	public void TurnOnData() {

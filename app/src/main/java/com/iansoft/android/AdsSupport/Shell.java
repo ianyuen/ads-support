@@ -20,7 +20,9 @@ public class Shell {
 
 	public void Execute(String command) {
 		Process process = null;
+		Log.print();
 		try {
+			Log.print();
     		process = Runtime.getRuntime().exec("su");
 			DataOutputStream outputStream = new DataOutputStream(process.getOutputStream());
 
@@ -32,8 +34,9 @@ public class Shell {
 			process.waitFor(); 
 		} catch (Exception e) {
     		Log.print(e.toString());
-		} finally { 
-    		if (process != null) { 
+		} finally {
+    		if (process != null) {
+				Log.print(); 
         		process.destroy(); 
     		} 
 		}
