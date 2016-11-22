@@ -41,7 +41,11 @@ def MakeAPK():
 	raw_input('\nPress any key to continue')
 	Support()
 
+def ClearScreen():
+	os.system("cls")
+
 def Support():
+	ClearScreen()
 	print '1 - make apk'
 	print '2 - install apk'
 	print '3 - start DDMS'
